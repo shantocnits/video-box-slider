@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Slider</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+      .container {
+        display: flex;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 1200px;
+        width: 100%;
+      }
+      .video-slider {
+        width: 50%;
+        padding-right: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      .main-thumbnail,
+      .main-video {
+        width: 100%;
+        margin-bottom: 10px;
+        position: relative;
+      }
+      .main-thumbnail img {
+        width: 100%;
+        border-radius: 10px;
+      }
+      .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 48px;
+        color: white;
+        cursor: pointer;
+      }
+      .swiper-container {
+        background: rgba(84, 84, 214, 0.61);
+        padding: 20px 0;
+        margin-top: -20px;
+        border-radius: 20px;
+      }
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      .thumbnail-wrapper {
+        position: relative;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 10px;
+        transition: width 0.3s, height 0.3s, border 0.3s;
+        border: 2px solid transparent;
+      }
+      .thumbnail-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .thumbnail-wrapper.active {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #f0c040;
+      }
+      .thumbnail-wrapper.active .play-icon {
+        display: block;
+      }
+      .thumbnail-wrapper .play-icon {
+        display: none;
+      }
+      .content {
+        width: 50%;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .tag {
+        background-color: #f0c040;
+        padding: 5px 10px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      h1 {
+        margin: 0;
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
+      p {
+        margin-bottom: 20px;
+      }
+      .read-story {
+        background-color: #f0c040;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="video-slider">
+        <div class="main-thumbnail" id="mainThumbnail">
+          <img src="./assets/img/our-services-img1.png" alt="Main Thumbnail" />
+          <span class="play-icon" onclick="playVideo()">▶️</span>
+        </div>
+        <div class="main-video" id="mainVideo" style="display: none">
+          <video id="videoPlayer" width="100%" controls>
+            <source src="" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="thumbnail-wrapper" data-slide-index="0">
+                <img
+                  src="./assets/img/our-services-img1.png"
+                  alt="Thumbnail 1"
+                  onclick="showThumbnail('./assets/img/our-services-img1.png', 'https://www.w3schools.com/html/mov_bbb.mp4', 0)"
+                />
+                <span class="play-icon">▶️</span>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="thumbnail-wrapper" data-slide-index="1">
+                <img
+                  src="./assets/img/our-services-img2.png"
+                  alt="Thumbnail 2"
+                  onclick="showThumbnail('./assets/img/our-services-img2.png', 'https://www.w3schools.com/html/mov_bbb.mp4', 1)"
+                />
+                <span class="play-icon">▶️</span>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="thumbnail-wrapper" data-slide-index="2">
+                <img
+                  src="./assets/img/our-services-img3.png"
+                  alt="Thumbnail 3"
+                  onclick="showThumbnail('./assets/img/our-services-img3.png', 'https://www.w3schools.com/html/mov_bbb.mp4', 2)"
+                />
+                <span class="play-icon">▶️</span>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="thumbnail-wrapper" data-slide-index="3">
+                <img
+                  src="./assets/img/our-services-img3.png"
+                  alt="Thumbnail 4"
+                  onclick="showThumbnail('./assets/img/our-services-img3.png', 'https://www.w3schools.com/html/mov_bbb.mp4', 3)"
+                />
+                <span class="play-icon">▶️</span>
+              </div>
+            </div>
+            <!-- Add more slides as needed -->
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <span class="tag">RONCHELL - Resort & Hotel</span>
+        <h1>The True Meaning of Luxury & Comfort.</h1>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </p>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </p>
+        <button class="read-story">Read Story</button>
+      </div>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+      let currentVideoSrc = "";
+
+      function showThumbnail(thumbnailSrc, videoSrc, slideIndex) {
+        const mainThumbnail = document.getElementById("mainThumbnail");
+        const mainVideo = document.getElementById("mainVideo");
+        const videoPlayer = document.getElementById("videoPlayer");
+        const mainThumbnailImg = mainThumbnail.querySelector("img");
+
+        // Update main thumbnail
+        mainThumbnailImg.src = thumbnailSrc;
+        mainThumbnail.style.display = "block";
+        mainVideo.style.display = "none";
+        videoPlayer.src = "";
+        currentVideoSrc = videoSrc;
+
+        // Update Swiper
+        swiper.slideTo(slideIndex, 0, false); // Slide to clicked thumbnail without animation
+        updateActiveThumbnail(slideIndex);
+      }
+
+      function playVideo() {
+        if (currentVideoSrc) {
+          const mainThumbnail = document.getElementById("mainThumbnail");
+          const mainVideo = document.getElementById("mainVideo");
+          const videoPlayer = document.getElementById("videoPlayer");
+
+          mainThumbnail.style.display = "none";
+          mainVideo.style.display = "block";
+          videoPlayer.src = currentVideoSrc;
+          videoPlayer.play();
+        }
+      }
+
+      function updateActiveThumbnail(activeIndex) {
+        document
+          .querySelectorAll(".thumbnail-wrapper")
+          .forEach((wrapper, index) => {
+            wrapper.classList.toggle("active", index === activeIndex);
+          });
+      }
+
+      const swiper = new Swiper(".swiper-container", {
+        slidesPerView: 3,
+        spaceBetween: 0,
+        centeredSlides: true, // Center the active slide
+        slideToClickedSlide: true, // Allow clicking to change slide
+        on: {
+          slideChange: function () {
+            updateActiveThumbnail(swiper.activeIndex);
+          },
+        },
+      });
+
+      // Initialize the first thumbnail as active
+      updateActiveThumbnail(swiper.activeIndex);
+    </script>
+  </body>
+</html>
